@@ -23,4 +23,9 @@ jobs:
       - name: Set up Sonar Scanner
         uses: Warchant/setup-sonar-scanner@v8
         with:
-          version: '5.0.1.3006' 
+          version: '5.0.1.3006'
+          
+      - name: SonarQube Quality Gate Check
+        uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
+        with:
+          scanMetadataReportFile: '.scannerwork/report-task.txt' 
