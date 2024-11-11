@@ -13,10 +13,10 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
-        
+     
       - name: Maven test
         run: mvn test
-        
+     
       - name: Check style
         run: mvn checkstyle:checkstyle
 
@@ -24,8 +24,11 @@ jobs:
         uses: Warchant/setup-sonar-scanner@v8
         with:
           version: '5.0.1.3006'
-          
+       
       - name: SonarQube Quality Gate Check
         uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          scanMetadataReportFile: '.scannerwork/report-task.txt' 
+          # Location of the scanner metadata report file
+          scanMetadataReportFile: '.scannerwork/report-task.txt' # optional, default is .scannerwork/report-task.txt
